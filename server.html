@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+      #notification {
+        display: none;
+        padding: 10px;
+        border: 1px solid #000;
+        margin-top: 10px;
+      }
+      #errorMessage {
+        color: red;
+        display: none;
+      }
+      body {
+        background: rgb(2, 0, 36);
+        background: linear-gradient(
+          90deg,
+          rgba(2, 0, 36, 1) 0%,
+          rgba(10, 10, 159, 0.756827731092437) 35%,
+          rgba(0, 212, 255, 1) 100%
+        );
+      }
+      .container{
+        display: flex;
+        flex-direction: column;
+        width: 300px;
+        height: 400px;
+        justify-content: center;
+        /* align-items: center; */
+        margin-left: 600px;
+      }
+      .input-css{
+        padding: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+        <input class="input-css" type="text" id="nameInput" placeholder="Enter Name" /> <br />
+        <input class="input-css" type="text" id="classInput" placeholder="Enter Class" /><br />
+        <input class="input-css" type="text" id="rollnoInput" placeholder="Enter Roll No" /><br />
+        <br />
+        <label for="fontColorInput">Font Color:</label>
+        <input type="color" id="fontColorInput" value="#000000" />
+        <br /><br />
+        <label for="bgColorInput">Background Color:</label>
+        <input type="color" id="bgColorInput" value="#ffffff" />
+        <br /><br />
+        <button class="input-css" id="showNotification">Show Notification</button>
+    
+        <div class="btn" id="notification"></div>
+
+    </div>
+   
+
+    <script>
+      $(document).ready(function () {
+        $("#showNotification").click(function () {
+          let name = $("#nameInput").val();
+          let className = $("#classInput").val();
+          let rollno = $("#rollnoInput").val();
+
+          var _html = "";
+          if(name && className && rollno){
+            _html = `My name is ${name} I am in class ${className} and my roll no. is ${rollno}.`
+          }
+          else{
+            _html = `Please fill in all fields.`
+          }
+          $("#notification").html(_html);
+
+          $("#notification").fadeIn();
+          setTimeout(function () {
+            $("#notification").fadeOut();
+            $("#notification").html("")
+          }, 3000);
+
+          let fontColor = $("#fontColorInput").val();
+          let bgColor = $("#bgColorInput").val();
+          $("#notification").css({
+            color: fontColor,
+            "background-color": bgColor,
+          });
+
+        });
+      });
+    </script>
+  </body>
+</html>
